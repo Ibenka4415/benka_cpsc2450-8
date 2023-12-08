@@ -1,5 +1,6 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 /**
  * This abstract class represents an exercise with basic properties like name, date, duration, and comments.
@@ -8,7 +9,7 @@ import java.util.Date;
 public abstract class Exercise1 implements Comparable<Exercise1> {
     private String name;
     private Date date;
-    private int duration;
+    private Double duration;
     private String comment;
 
     private static final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -20,7 +21,7 @@ public abstract class Exercise1 implements Comparable<Exercise1> {
      * @param duration   The duration of the exercise in minutes.
      * @throws ParseException If the date string is not in the correct format.
      */
-    public Exercise1(String name, String dateString, int duration) throws ParseException {
+    public Exercise1(String name, String dateString, Double duration) throws ParseException {
         this.name = name;
         this.date = formatter.parse(dateString);
         this.duration = duration;
@@ -38,7 +39,7 @@ public abstract class Exercise1 implements Comparable<Exercise1> {
         return date;
     }
 
-    public int getDuration() {
+    public Double getDuration() {
         return duration;
     }
 
@@ -68,6 +69,13 @@ public abstract class Exercise1 implements Comparable<Exercise1> {
      */
     @Override
     public String toString() {
-        return String.format("%-15s %-15s %-15s %.2f ", getExerciseType(), getName(), formatter.format(getDate()), calculateCalories());
+        return String.format("%-15s %-15s %-15s %.2f ", getExerciseType(), getName(), formatter.format(getDate()), getDuration());
+    }
+    public static  double getExerciseTotal(ArrayList<RunWalk>runWalk) {
+    	double total = 0;
+    	for (RunWalk c : runWalk) {
+    		total = total + c.calculateCalories();
+    	}
+    	return total;
     }
 }

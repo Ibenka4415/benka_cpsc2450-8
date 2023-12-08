@@ -14,7 +14,7 @@ public class RunWalk extends Exercise1 {
     * @param distance
     * @throws ParseException
     */
-    public RunWalk(String name, String date, int duration, double distance) throws ParseException  {
+    public RunWalk(String name, String date, double duration, double distance,String comment) throws ParseException  {
         super(name, date, duration);
         this.distance = distance;
     }
@@ -25,7 +25,6 @@ public class RunWalk extends Exercise1 {
         return "run/walk";
     }
 
-    
     @Override
     public double calculateCalories() {
         
